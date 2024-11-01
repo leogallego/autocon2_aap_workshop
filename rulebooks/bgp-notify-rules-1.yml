@@ -1,0 +1,21 @@
+---
+- name: BGP neighbor state event from Arista
+  hosts: localhost
+  sources:
+   - ansible.eda.kafka:
+       host: broker
+       port: 9092
+       topic: network
+  rules:
+   - name: BGP neighbor is down
+     condition: event.fields.admin_status == "DOWN"
+     actions:
+       - run_job_template:
+           name: "EDA-Notify-Mattermost"
+           organization: "Default"
+           job_args:
+             extra_vars:
+               bgp_state: "{{ ansible_eda.event.fields.session_state }}"
+               bgp_prob_neighbor: "{{ ansible_eda.event.tags.neighbor_address }}"
+               bgp_timestamp: "{{ ansible_eda.event.timestamp }}"
+               bgp_error_type: "{{ ansible_eda.event.tags.identifier }}"
