@@ -8,7 +8,7 @@
        topic: network
   rules:
    - name: BGP neighbor is down
-     condition: event.fields.session_state == "IDLE"
+     condition: event.body.fields.session_state == "IDLE"
      actions:
        - run_job_template:
            name: "EDA-Notify-Mattermost"
