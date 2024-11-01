@@ -5,8 +5,8 @@
   gather_facts: false
   tasks:
     - name: Send notification message via Mattermost
+      delegate_to: localhost
       community.general.mattermost:
-       delegate_to: localhost
        url: http://podman-host:8065
        api_key: "{{ MATTERMOST_API_TOKEN }}"
        attachments:
