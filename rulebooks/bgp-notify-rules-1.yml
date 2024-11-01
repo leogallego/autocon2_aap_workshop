@@ -15,7 +15,7 @@
            organization: "Default"
            job_args:
              extra_vars:
-               bgp_state: "{{ ansible_eda.event.fields.session_state }}"
-               bgp_prob_neighbor: "{{ ansible_eda.event.tags.neighbor_address }}"
-               bgp_timestamp: "{{ ansible_eda.event.timestamp }}"
-               bgp_error_type: "{{ ansible_eda.event.tags.identifier }}"
+               bgp_state: "{{ event.body.fields.session_state }}"
+               bgp_prob_neighbor: "{{ event.body.tags.neighbor_address }}"
+               bgp_timestamp: "{{ event.body.timestamp }}"
+               bgp_error_type: "{{ event.body.tags.identifier }}"
