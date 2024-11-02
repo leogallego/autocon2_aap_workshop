@@ -7,7 +7,7 @@
        port: 9092
        topic: network
   rules:
-   - name: BGP neighbor is down
+   - name: Look for BGP neighbor IDLE state and notify
      condition: event.body.fields.session_state == "IDLE"
      actions:
        - run_job_template:
