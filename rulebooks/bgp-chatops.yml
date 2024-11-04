@@ -1,5 +1,5 @@
 ---
-- name: Listen for events on a webhook
+- name: Listen for Mattermost events on a webhook
   hosts: all
   sources:
     - ansible.eda.webhook:
@@ -7,9 +7,9 @@
         port: 5000
 
   rules:
-    - name: Webhook Event from Mattermost
-      condition: event.payload.channel_name  == "town-square" and event.payload.trigger_word == "remediate"
+    - name: Look for a webhook event to remediate BGP
+      condition: event.payload.channel_name  == "town-square" and event.payload.trigger_word == "remediate-bgp"
       action:
         run_workflow_template:
-          name: "EDA-Remediate-BGP"
+          name: "BGP Workflow"
           organization: "Default"
