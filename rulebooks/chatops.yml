@@ -10,5 +10,6 @@
     - name: Webhook Event from Mattermost
       condition: event.payload.channel_name  == "town-square" and event.payload.trigger_word == "remediate"
       action:
-        debug:
-          msg: "Got the hook!"
+        run_workflow_template:
+          name: "EDA-Remediate-BGP"
+          organization: "Default"
