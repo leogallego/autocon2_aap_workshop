@@ -2,6 +2,8 @@ localhost
 
 [routers]
 cisco
+cisco2
+cisco3
 
 [routers:vars]
 ansible_connection=ansible.netcommon.network_cli
